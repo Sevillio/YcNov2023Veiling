@@ -1,3 +1,6 @@
+using Datalayer;
+using Microsoft.EntityFrameworkCore;
+
 namespace Yc2023Veilingnew
 {
     public class Program
@@ -12,6 +15,9 @@ namespace Yc2023Veilingnew
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<MijnDatabases>(options => {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+            });
 
             var app = builder.Build();
 
